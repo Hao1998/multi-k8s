@@ -10,15 +10,15 @@ script:
   - docker run -e CI=true haoly/react-test npm test -- --coverage
 
 after_sucess:
-  - docker build -t haoly/complex-client ./client
-  - docker build -t haoly/complex-nginx ./nginx
-  - docker build -t haoly/complex-server ./server
-  - docker build -t haoly/complex-worker ./worker
+  - docker build -t 142122/complex-client ./client
+  - docker build -t 142122/complex-nginx ./nginx
+  - docker build -t 142122/complex-server ./server
+  - docker build -t 142122/complex-worker ./worker
   # Login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push haoly/complex-client
-  - docker push haoly/complex-nginx
-  - docker push haoly/complex-server
-  - docker push haoly/complex-worker
+  - docker push 142122/complex-client
+  - docker push 142122/complex-nginx
+  - docker push 142122/complex-server
+  - docker push 142122/complex-worker
 
