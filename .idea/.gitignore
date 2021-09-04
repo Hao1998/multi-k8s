@@ -1,5 +1,7 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+google-cloud-sdk-247.0.0-linux-x86_64.tar.gz
+service-account.json
 # Editor-based HTTP Client requests
 /httpRequests/
