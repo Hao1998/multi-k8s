@@ -3,6 +3,7 @@ services:
   - docker
 env:
   global:
+    - SHA=$(git rev-parse HEAD)
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
@@ -17,7 +18,7 @@ before_install:
   - sudo gcloud container clusters get-credentials multi-cluster
   - sudo echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - sudo docker build -t 142122/react-test -f ./client/Dockerfile.dev ./client
-
+  - sudo git add .
 script:
   - docker run -e CI=true 142122/react-test npm test
 
