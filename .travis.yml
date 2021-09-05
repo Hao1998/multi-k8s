@@ -10,6 +10,8 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update
+  - export PATH=$PATH:/usr/local/share/google/google-cloud-sdk/bin/
+  - source ~/.bashrc
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project multi-k8s-325002
   - gcloud config set compute/zone asia-southeast1-a
