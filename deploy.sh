@@ -1,4 +1,3 @@
-git add .
 docker build -t 142122/complex-client:latest -t 142122/complex-client:$SHA -f ./client/Dockerfile ./client
 docker build -t 142122/complex-server:latest -t 142122/complex-server:$SHA -f ./server/Dockerfile ./server
 docker build -t 142122/complex-worker:latest -t 142122/complex-worker:$SHA -f ./worker/Dockerfile ./worker

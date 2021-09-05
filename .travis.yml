@@ -7,18 +7,15 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
-  - curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-247.0.0-linux-x86_64.tar.gz
-  - sudo tar zxvf google-cloud-sdk-247.0.0-linux-x86_64.tar.gz google-cloud-sdk
-  - sudo mv /usr/lib/google-cloud-sdk /usr/lib/google-cloud-sdk-ORIG
-  - sudo mv google-cloud-sdk /usr/lib/
-  - sudo gcloud components update
-  - sudo gcloud auth activate-service-account --key-file service-account.json
-  - sudo gcloud config set project multi-k8s-325002
-  - sudo gcloud config set compute/zone asia-southeast1-a
-  - sudo gcloud container clusters get-credentials multi-cluster
-  - sudo echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - sudo docker build -t 142122/react-test -f ./client/Dockerfile.dev ./client
-  - sudo git add .
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project multi-k8s-325002
+  - gcloud config set compute/zone asia-southeast1-a
+  - gcloud container clusters get-credentials multi-cluster
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t 142122/react-test -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true 142122/react-test npm test
 
