@@ -1,7 +1,7 @@
-git git restore --staged service-account.json
 docker build -t 142122/complex-client:latest -t 142122/complex-client:$SHA -f ./client/Dockerfile ./client
 docker build -t 142122/complex-server:latest -t 142122/complex-server:$SHA -f ./server/Dockerfile ./server
 docker build -t 142122/complex-worker:latest -t 142122/complex-worker:$SHA -f ./worker/Dockerfile ./worker
+git add .
 docker push 142122/complex-client:latest
 docker push 142122/complex-server:latest
 docker push 142122/complex-worker:latest
